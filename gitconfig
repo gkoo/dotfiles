@@ -1,0 +1,33 @@
+[core]
+	excludesfile = /Users/gkoo/.gitignore_global
+	editor = /usr/bin/vim
+[user]
+	name = Gordon Koo
+	email = gordon@gordonkoo.com
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+	ui = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[alias]
+  st = status
+  lg = log --decorate --graph --oneline
+  br = branch
+  ci = commit
+  co = checkout
