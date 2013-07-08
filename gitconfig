@@ -31,3 +31,9 @@
   br = branch
   ci = commit
   co = checkout
+  chp = cherry-pick
+	dif = difftool
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
