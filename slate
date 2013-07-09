@@ -42,4 +42,4 @@ bind up:cmd;alt   focus behind
 bind down:cmd;alt focus behind
 
 # Window Hints
-bind esc:cmd hint
+#bind esc:cmd hint
