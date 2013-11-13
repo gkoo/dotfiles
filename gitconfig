@@ -33,6 +33,7 @@
   co = checkout
   chp = cherry-pick
   dif = difftool
+  rb = rebase
 [diff]
   tool = vimdiff
 [difftool]

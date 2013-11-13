@@ -10,4 +10,5 @@ ln -s ~/.dotfiles/git_branch_prompt.bash ~/.git_branch_prompt.bash
 ln -s ~/.dotfiles/ackrc ~/.ackrc
 ln -s ~/.dotfiles/slate ~/.slate
 ln -s ~/.dotfiles/slate.js ~/.slate.js
+ln -s ~/.dotfiles/.jshintrc ~/.jshintrc
 ```

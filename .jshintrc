@@ -1,0 +1,16 @@
+{
+  "globals": {
+    "document": false,
+    "Airbnb": false,
+    "$": false,
+    "jQuery": false,
+    "_": false,
+    "Backbone": false,
+    "require": false,
+    "provide": false,
+    "console": false
+  },
+  "expr": true,
+  "maxlen": 100,
+  "undef": true
+}
