@@ -1,4 +1,5 @@
-// Create Operations
+/* globals slate */
+
 var pushRight = slate.operation("push", {
   "direction" : "right",
   "style" : "bar-resize:screenSizeX/2"
@@ -7,7 +8,7 @@ var pushRight = slate.operation("push", {
 pushLeft = slate.operation("push", {
   "direction" : "left",
   "style" : "bar-resize:screenSizeX/2"
-});
+}),
 
 halfThrow0 = slate.operation("throw", {
   "screen": "0",
@@ -38,7 +39,22 @@ fullscreen = slate.operation("move", {
   "y" : "screenOriginY",
   "width" : "screenSizeX",
   "height" : "screenSizeY"
-});
+}),
+
+adiumPush = slate.operation("push", {
+  "direction": "right"
+}),
+
+// Special-case windows
+appOperations = function(win) {
+  var appName = win.app().name();
+  if (appName === "Adium" && win.title() === "Contacts") {
+    // Adium Contacts list
+    win.doOperation(adiumPush);
+    return true;
+  }
+  return false;
+};
 
 // Two-monitor set-up
 slate.bind("1:ctrl;cmd", function(win) {
@@ -61,5 +77,6 @@ slate.bind("left:ctrl;cmd", function(win) {
   win.doOperation(throw0);
 });
 slate.bind("right:ctrl;cmd", function(win) {
+  if (appOperations(win)) { return; }
   win.doOperation(throw1);
 });
