@@ -3,7 +3,7 @@
   editor = /usr/bin/vim
 [user]
   name = Gordon Koo
-  email = gordon@gordonkoo.com
+  email = gordon.koo@airbnb.com
 [color]
   branch = auto
   diff = auto
@@ -27,16 +27,20 @@
   ;untracked = cyan
 [alias]
   st = status
-  lg = log --decorate --graph --oneline
+  lg = log --decorate --graph --oneline -20
   br = branch
   ci = commit
   co = checkout
   chp = cherry-pick
   dif = difftool
   rb = rebase
+  ps = push
+  pl = pull
 [diff]
   tool = vimdiff
 [difftool]
   prompt = false
 [push]
+	default = current
+[pull]
 	default = current

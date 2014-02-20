@@ -2,12 +2,15 @@
   "globals": {
     "document": false,
     "Airbnb": false,
+    "I18n": false,
     "$": false,
     "jQuery": false,
     "_": false,
     "Backbone": false,
     "require": false,
     "provide": false,
+    "module": false,
+    "window": false,
     "console": false
   },
   "expr": true,

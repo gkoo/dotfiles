@@ -11,4 +11,5 @@ ln -s ~/.dotfiles/ackrc ~/.ackrc
 ln -s ~/.dotfiles/slate ~/.slate
 ln -s ~/.dotfiles/slate.js ~/.slate.js
 ln -s ~/.dotfiles/.jshintrc ~/.jshintrc
+ln -s ~/.dotfiles/agignore ~/.agignore
 ```

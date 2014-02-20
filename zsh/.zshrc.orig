@@ -1,0 +1,26 @@
+#unalias run-help
+#autoload run-help
+#HELPDIR=/usr/local/share/zsh/helpfiles
+
+# vi mode
+bindkey -v
+
+source $ZDOTDIR/gitprompt.zsh
+
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+# Sets a search path for the cd command
+cdpath=( ~/workspace/airbnb/ ~/workspace/ )
+
+setopt correctall
+setopt autocd
+setopt histignoredups
+
+# Function automatically run when changing directories
+#chpwd () {}
+
+#source ~/.dotfiles/zsh/
+
+source ~/.dotfiles/common-aliases.bash

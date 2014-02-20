@@ -50,9 +50,16 @@ appOperations = function(win) {
     return true;
   }
   return false;
+},
+
+isAdium = function(win) {
+  return win.app().name() === 'Adium';
 };
 
 slate.bind('1:ctrl;cmd', function(win) {
+  if (isAdium(win)) {
+    return;
+  }
   if (slate.screenCount() > 1) {
     win.doOperation(throww('0'));
   }
@@ -60,6 +67,9 @@ slate.bind('1:ctrl;cmd', function(win) {
 });
 
 slate.bind('2:ctrl;cmd', function(win) {
+  if (isAdium(win)) {
+    return;
+  }
   if (slate.screenCount() > 1) {
     win.doOperation(throww('0'));
   }
@@ -67,16 +77,25 @@ slate.bind('2:ctrl;cmd', function(win) {
 });
 
 slate.bind('3:ctrl;cmd', function(win) {
+  if (isAdium(win)) {
+    return;
+  }
   win.doOperation(throww('1'));
   win.doOperation(push('left'));
 });
 
 slate.bind('4:ctrl;cmd', function(win) {
+  if (isAdium(win)) {
+    return;
+  }
   win.doOperation(throww('1'));
   win.doOperation(push('right'));
 });
 
 slate.bind('left:ctrl;cmd', function(win) {
+  if (isAdium(win)) {
+    return;
+  }
   if (slate.screenCount() > 1) {
     // Two-screen setup
     win.doOperation(throww('0', false));
@@ -91,17 +110,22 @@ slate.bind('right:ctrl;cmd', function(win) {
   if (appOperations(win)) {
     return;
   }
-  else if (slate.screenCount() > 1) {
-    // Two-screen setup
-    win.doOperation(throww('1', false));
-  }
-  else {
-    // Single-screen setup
-    win.doOperation(push('right'));
+  else if (!isAdium(win)) {
+    if (slate.screenCount() > 1) {
+      // Two-screen setup
+      win.doOperation(throww('1', false));
+    }
+    else {
+      // Single-screen setup
+      win.doOperation(push('right'));
+    }
   }
 });
 
 slate.bind('up:ctrl;cmd', function(win) {
+  if (isAdium(win)) {
+    return;
+  }
   // Only used for single-screen.
   win.doOperation(throww('0', false));
 });
