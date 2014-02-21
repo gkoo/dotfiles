@@ -78,6 +78,10 @@ cdpath=( ~/workspace/airbnb/ ~/workspace/ )
 
 # vi mode
 bindkey -v
+# get into command mode without leaving home row
+bindkey -M viins 'jk' vi-cmd-mode
+# backwards search
+bindkey -M vicmd '?' history-incremental-search-backward
 
 # When directory is changed set xterm title to host:dir
 chpwd() {
