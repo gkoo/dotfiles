@@ -53,7 +53,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/Cellar/git/1.9.2/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
@@ -74,9 +74,10 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # ===============
 
 # Sets a search path for the cd command
-cdpath=( ~/workspace/airbnb/ ~/workspace/ )
+cdpath=( ~/workspace/airbnb/ ~/workspace/ ~/ )
 
 # vi mode
+# `man zshzle` for more info
 bindkey -v
 # get into command mode without leaving home row
 bindkey -M viins 'jk' vi-cmd-mode
@@ -92,4 +93,23 @@ chpwd() {
     esac
 }
 
+if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+source $HOME/.zshenv
+export GRADLE_HOME=~/workspace/gradle-2.1
+export PATH="$HOME/.rbenv/bin:$GRADLE_HOME/bin:$PATH"
+
 source ~/.dotfiles/common-aliases.bash
+
+# gets the current branch name
+gitbranch() {
+  git branch | egrep "^\*" | cut -d ' ' -f 2
+}
+
+gitrepo() {
+  git remote -v | egrep "^origin.+\(push\)$" | cut -f 2 | cut -d " " -f 1 | cut -d ":" -f 2 | cut -d "." -f 1
+}
+
+# opens a link to the git branch in GHE
+branchopen() {
+  open "http://git.airbnb.com/$(gitrepo)/compare/$(gitbranch)"
+}
