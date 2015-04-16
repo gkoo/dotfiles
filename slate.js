@@ -13,10 +13,54 @@ var getPartialWidthFraction = function(screenId) {
 // @width: desired window width represented as a fraction.
 push = function(direction) {
   var config = { direction: direction },
-      width = getPartialWidthFraction(slate.screen().id());
+      width = '1/2';
+      //width = getPartialWidthFraction(slate.screen().id());
 
-  config.style = 'bar-resize:screenSizeX*' + width;
+  if (direction === 'left' || direction === 'right') {
+    config.style = 'bar-resize:screenSizeX*' + width;
+  }
+  else {
+    config.style = 'bar-resize:screenSizeY/2';
+  }
   return slate.operation('push', config);
+},
+
+moveQuadrant = function(win, quadrant) {
+  //win.doOperation(slate.operation('resize', config));
+  var op;
+  if (quadrant === 0) {
+    op = slate.operation('move', {
+      x: 'screenOriginX',
+      y: 'screenOriginY',
+      width: 'screenSizeX/2',
+      height: 'screenSizeY/2'
+    });
+  }
+  if (quadrant === 1) {
+    op = slate.operation('move', {
+      x: 'screenSizeX/2',
+      y: 'screenOriginY',
+      width: 'screenSizeX/2',
+      height: 'screenSizeY/2'
+    });
+  }
+  if (quadrant === 2) {
+    op = slate.operation('move', {
+      x: 'screenOriginX',
+      y: 'screenSizeY/2',
+      width: 'screenSizeX/2',
+      height: 'screenSizeY/2'
+    });
+  }
+  if (quadrant === 3) {
+    op = slate.operation('move', {
+      x: 'screenSizeX/2',
+      y: 'screenSizeY/2',
+      width: 'screenSizeX/2',
+      height: 'screenSizeY/2'
+    });
+  }
+  win.doOperation(op);
 },
 
 // Move the window to a desired screen.
@@ -37,27 +81,25 @@ throww = function(screenId, isPartial) {
   return slate.operation('throw', config);
 },
 
-adiumPush = slate.operation('push', {
-  'direction': 'right'
-}),
-
 // Special-case windows
 appOperations = function(win) {
   var appName = win.app().name();
-  if (appName === 'Adium' && win.title() === 'Contacts') {
-    // Adium Contacts list
-    win.doOperation(adiumPush);
+  if (appName === 'Adium' || appName === 'Twitter') {
+    win.doOperation(slate.operation('push', { 'direction': 'right' }));
     return true;
   }
   return false;
 },
 
-isAdium = function(win) {
-  return win.app().name() === 'Adium';
+shouldntResize = function(win) {
+  var appName = win.app().name();
+  return appName === 'Adium' || appName === 'Twitter';
 };
 
+// 50% resizes
+//slate.bind('1:ctrl;cmd', function(win) {
 slate.bind('1:ctrl;cmd', function(win) {
-  if (isAdium(win)) {
+  if (shouldntResize(win)) {
     return;
   }
   if (slate.screenCount() > 1) {
@@ -67,7 +109,7 @@ slate.bind('1:ctrl;cmd', function(win) {
 });
 
 slate.bind('2:ctrl;cmd', function(win) {
-  if (isAdium(win)) {
+  if (shouldntResize(win)) {
     return;
   }
   if (slate.screenCount() > 1) {
@@ -77,7 +119,7 @@ slate.bind('2:ctrl;cmd', function(win) {
 });
 
 slate.bind('3:ctrl;cmd', function(win) {
-  if (isAdium(win)) {
+  if (shouldntResize(win)) {
     return;
   }
   win.doOperation(throww('1'));
@@ -85,15 +127,29 @@ slate.bind('3:ctrl;cmd', function(win) {
 });
 
 slate.bind('4:ctrl;cmd', function(win) {
-  if (isAdium(win)) {
+  if (shouldntResize(win)) {
     return;
   }
   win.doOperation(throww('1'));
   win.doOperation(push('right'));
 });
 
+// 25% resizes
+slate.bind('1:ctrl', function(win) {
+  moveQuadrant(win, 0);
+});
+slate.bind('2:ctrl', function(win) {
+  moveQuadrant(win, 1);
+});
+slate.bind('3:ctrl', function(win) {
+  moveQuadrant(win, 2);
+});
+slate.bind('4:ctrl', function(win) {
+  moveQuadrant(win, 3);
+});
+
 slate.bind('left:ctrl;cmd', function(win) {
-  if (isAdium(win)) {
+  if (shouldntResize(win)) {
     return;
   }
   if (slate.screenCount() > 1) {
@@ -110,7 +166,7 @@ slate.bind('right:ctrl;cmd', function(win) {
   if (appOperations(win)) {
     return;
   }
-  else if (!isAdium(win)) {
+  else if (!shouldntResize(win)) {
     if (slate.screenCount() > 1) {
       // Two-screen setup
       win.doOperation(throww('1', false));
@@ -123,7 +179,7 @@ slate.bind('right:ctrl;cmd', function(win) {
 });
 
 slate.bind('up:ctrl;cmd', function(win) {
-  if (isAdium(win)) {
+  if (shouldntResize(win)) {
     return;
   }
   // Only used for single-screen.

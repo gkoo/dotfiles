@@ -1,7 +1,8 @@
 amcharts
 app/assets/javascripts/autocomplete_data.js
 app/assets/javascripts/ext
-app/assets/javascripts/plupload.full.js
+*plupload.full.js
+assets/javascripts/ext/*
 app/assets/stylesheets/ext
 app/assets/images/ext
 build
@@ -12,12 +13,8 @@ google_geocoder
 Jit
 jobs.xml
 jquery-dev
-lib/o2/o2.1/build/o2.min.css
 log
-public/annual/scripts/main.js
-public/images
-public/assets
-public/annual
+public/*
 stamps_dot_com
 swagger
 tiny_mce

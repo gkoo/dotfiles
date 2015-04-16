@@ -36,6 +36,7 @@
   rb = rebase
   ps = push
   pl = pull
+  prune-merged = ! "git branch --merged master | grep -v -E '^(\\* |  master$)' | xargs -n 1 git branch -d"
 [diff]
   tool = vimdiff
 [difftool]
@@ -44,3 +45,16 @@
 	default = current
 [pull]
 	default = current
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[fetch]
+	prune = true
+[web]
+	browser = open
+[hub]
+	host = git.airbnb.com
+[branch]
+	autosetupmerge = true ; When branching off a remote branch, automatically let the local branch track the remote branch
+[rerere]
+	enabled = 1

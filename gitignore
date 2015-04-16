@@ -2,3 +2,4 @@ custom_plan.rb
 zeus.json
 *.o
 *.pyc
+public
