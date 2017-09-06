@@ -1,0 +1,6 @@
+[user]
+	email = gordon@opendoor.com
+[push]
+	default = current
+[alias]
+  prune-merged = "!git checkout master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"

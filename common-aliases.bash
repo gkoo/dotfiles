@@ -36,3 +36,11 @@ alias vboxrestart="sudo /Library/StartupItems/VirtualBox/VirtualBox restart"
 
 # Goldkey
 alias rekey='ssh-add -e /usr/lib/opensc-pkcs11.so; ssh-add -s /usr/lib/opensc-pkcs11.so -t 3600'
+
+alias ls='ls -lG'
+
+# See .zshrc for this function
+alias bo='branchopen'
+
+# Rails
+alias berc='bundle exec rails c'
