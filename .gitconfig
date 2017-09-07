@@ -4,3 +4,7 @@
 	default = current
 [alias]
   prune-merged = "!git checkout master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+  # Find a branch based on partial name matching.
+  # `git find-branch mast` --> will find master, as long as there is only one result for master
+  fb = "!zsh -c \"git branch | grep $1 | xargs -n 1 git checkout\""
