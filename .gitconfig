@@ -3,7 +3,10 @@
 [push]
 	default = current
 [alias]
-  prune-merged = "!git checkout master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+  co = checkout
+  prune-merged = "!git checkout master && git pull origin master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+  ;cleanup-branches = "git remote prune | grep gkoo__ | sed 's/^.*origin\///g' | xargs -L1 -J % git branch -D %"
+  cleanup-branches = "!gitcleanupbranches"
 
   # Find a branch based on partial name matching.
   # `git find-branch mast` --> will find master, as long as there is only one result for master

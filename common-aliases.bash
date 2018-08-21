@@ -1,5 +1,4 @@
 alias ws="cd ~/workspace"
-alias pbws="cd ~/workspace/pebble-dev"
 
 # Git
 alias gcob="git checkout -b"
@@ -12,6 +11,7 @@ alias gft="git fetch"
 # alias gpfo="git push -f origin $(git rev-parse --abbrev-ref HEAD)"
 #alias gclone="git clone"
 alias gstl="git stash list"
+alias gfb="git fb" # `git fb' is aliased to `!zsh -c "git branch | grep $1 | xargs -n 1 git checkout"'
 
 # Vagrant
 alias v="vagrant"
@@ -34,9 +34,6 @@ alias agr="ag --ruby"
 
 alias vboxrestart="sudo /Library/StartupItems/VirtualBox/VirtualBox restart"
 
-# Goldkey
-alias rekey='ssh-add -e /usr/lib/opensc-pkcs11.so; ssh-add -s /usr/lib/opensc-pkcs11.so -t 3600'
-
 alias ls='ls -lG'
 
 # See .zshrc for this function
@@ -44,3 +41,22 @@ alias bo='branchopen'
 
 # Rails
 alias berc='bundle exec rails c'
+alias bi='bundle install'
+alias brspec='bin/rspec'
+
+# Opendoor stuff
+alias startweb='bin/rails server -p ${PORT:-5000} -b 0.0.0.0'
+alias startinst='cd institutions; WEB_ENVIRONMENT=development python wsgi.py'
+alias instsh='FLASK_APP=autoapp.py flask shell'
+alias prodwebsh='cd $WEB_PATH; ./bin/development/console production'
+alias prodwebrestart='cd $WEB_PATH; heroku restart -a opendoor-web'
+#alias prodwebsh='cd $WEB_PATH; heroku run -a opendoor-web OD_CURRENT_USER_EMAIL="gordon@opendoor.com" bin/rails console'
+alias prodhelloritosh='heroku run -a hellorito rails c'
+alias actinst='source activate institutions'
+#alias startconsumer='CONSUMER_CONFIG=true foreman start webpack'
+alias startconsumer='cd /Users/gordonkoo/workspace/opendoor/web/packages/consumer; yarn start'
+
+alias scr='screen'
+alias ag='ag --path-to-ignore ~/.ignore'
+alias gpbo='gp && bo'
+alias changedfiles='git diff --find-renames --find-copies --diff-filter=d --cached --name-only'

@@ -11,10 +11,10 @@ DEFAULT_USER="gordonkoo"
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/Cellar/git/1.9.2/bin:/usr/local/bin:$PATH
+#export PATH=$HOME/bin:/usr/local/Cellar/git/1.9.2/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
-export PATH=/Users/gordonkoo/miniconda3/bin:$PATH
+#export PATH=/Users/gordonkoo/miniconda3/bin:$PATH
 
 # # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -28,6 +28,8 @@ export PATH=/Users/gordonkoo/miniconda3/bin:$PATH
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+export PATH=~/Library/Android/sdk/tools:$PATH
+export PATH=~/Library/Android/sdk/platform-tools:$PATH
 
 # ===============
 # Gordon's stuff!
@@ -70,7 +72,31 @@ gitrepo() {
   git remote -v | egrep "^origin.+\(push\)$" | cut -f 2 | cut -d " " -f 1 | cut -d ":" -f 2 | cut -d "." -f 1
 }
 
+gitlastsha() {
+  g log -n 1 --oneline | cut -d ' ' -f 1
+}
+
+gprunebranches() {
+  git checkout master && comm -12 <(git branch | sed "s/ *//g") <(git remote prune origin | sed "s/^.*origin\///g") | xargs -L1 -J % git branch -D %
+}
+
+instpods() {
+  cd institutions/; kubectl --namespace=$1 get pods | grep institutions
+}
+
+sshinstpod() {
+  kubectl --namespace=$1 exec -it $2 bash
+}
+
 # opens a link to the git branch in GHE
 branchopen() {
   open "http://www.github.com/$(gitrepo)/compare/$(gitbranch)"
 }
+
+reviewappsh() {
+  heroku run -a $1 rails c
+}
+
+export OD_CURRENT_USER_EMAIL="gordon@opendoor.com"
+export WEB_PATH="/Users/gordonkoo/workspace/opendoor/web/"
+export ANDROID_HOME=/Users/gordonkoo/Library/Android/sdk
