@@ -37,6 +37,7 @@
   ps = push
   pl = pull
   prune-merged = ! "git branch --merged master | grep -v -E '^(\\* |  master$)' | xargs -n 1 git branch -d"
+  fb = "!zsh -c \"git branch | grep $1 | xargs -n 1 git checkout\""
 [diff]
   tool = vimdiff
 [difftool]
