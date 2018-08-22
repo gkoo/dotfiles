@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$ZDOTDIR/.oh-my-zsh
+export ZSH="/Users/gordonkoo/.oh-my-zsh"
 
 # Set name of the theme to load.
 # Look in $ZDOTDIR/.oh-my-zsh/themes/
@@ -8,6 +8,8 @@ ZSH=$ZDOTDIR/.oh-my-zsh
 #ZSH_THEME="fino"
 ZSH_THEME="muse"
 DEFAULT_USER="gordonkoo"
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -61,7 +63,7 @@ chpwd() {
 source ~/.dotfiles/common-aliases.bash
 
 # K8s
-source <(kubectl completion zsh)
+#source <(kubectl completion zsh)
 
 # gets the current branch name
 gitbranch() {
