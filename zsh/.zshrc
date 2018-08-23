@@ -1,6 +1,8 @@
 # Path to your oh-my-zsh configuration.
 export ZSH="/Users/gordonkoo/.oh-my-zsh"
 
+plugins=(git)
+
 # Set name of the theme to load.
 # Look in $ZDOTDIR/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
