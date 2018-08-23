@@ -59,3 +59,5 @@
 	autosetupmerge = true ; When branching off a remote branch, automatically let the local branch track the remote branch
 [rerere]
 	enabled = 1
+[pager]
+	branch = false ; prevents `git branch` going into tty mode (aka "less" mode)
