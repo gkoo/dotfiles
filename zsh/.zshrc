@@ -101,6 +101,9 @@ reviewappsh() {
   heroku run -a $1 rails c
 }
 
+export ODDIR="$HOME/workspace/opendoor"
 export OD_CURRENT_USER_EMAIL="gordon@opendoor.com"
 export WEB_PATH="/Users/gordonkoo/workspace/opendoor/web/"
 export ANDROID_HOME=/Users/gordonkoo/Library/Android/sdk
+
+source ~/.dotfiles/zsh/secrets

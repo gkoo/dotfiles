@@ -3,7 +3,7 @@
   editor = /usr/bin/vim
 [user]
   name = Gordon Koo
-  email = gordon.koo@airbnb.com
+  email = gordon@opendoor.com
 [color]
   branch = auto
   diff = auto

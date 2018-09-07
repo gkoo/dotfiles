@@ -45,7 +45,7 @@ alias bi='bundle install'
 alias brspec='bin/rspec'
 
 # Opendoor stuff
-alias startweb='bin/rails server -p ${PORT:-5000} -b 0.0.0.0'
+alias startweb='cd $WEB_PATH; bin/rails server -p ${PORT:-5000} -b 0.0.0.0'
 alias startinst='cd institutions; WEB_ENVIRONMENT=development python wsgi.py'
 alias instsh='FLASK_APP=autoapp.py flask shell'
 alias prodwebsh='cd $WEB_PATH; ./bin/development/console production'
