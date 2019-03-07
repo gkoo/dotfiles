@@ -80,10 +80,6 @@ gitlastsha() {
   g log -n 1 --oneline | cut -d ' ' -f 1
 }
 
-gprunebranches() {
-  git checkout master && comm -12 <(git branch | sed "s/ *//g") <(git remote prune origin | sed "s/^.*origin\///g") | xargs -L1 -J % git branch -D %
-}
-
 instpods() {
   cd institutions/; kubectl --namespace=$1 get pods | grep institutions
 }
@@ -104,6 +100,14 @@ reviewappsh() {
 export ODDIR="$HOME/workspace/opendoor"
 export OD_CURRENT_USER_EMAIL="gordon@opendoor.com"
 export WEB_PATH="/Users/gordonkoo/workspace/opendoor/web/"
+export CONSUMER_PATH="/Users/gordonkoo/workspace/opendoor/consumer/"
 export ANDROID_HOME=/Users/gordonkoo/Library/Android/sdk
+export ANSIBLE_VAULT_PASSWORD_FILE=/Users/gordonkoo/.opendoor/ansible_pwd
+export GOPATH="/Users/gordonkoo/workspace/opendoor/go/"
+export PATH=$GOPATH/bin:$PATH
+export PATH="/Users/gordonkoo/workspace/protoc-3.6.1-osx-x86_64:$PATH"
+export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 
 source ~/.dotfiles/zsh/secrets
+
+eval "$(direnv hook zsh)"

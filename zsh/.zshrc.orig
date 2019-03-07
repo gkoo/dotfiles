@@ -5,14 +5,12 @@
 # vi mode
 bindkey -v
 
-source $ZDOTDIR/gitprompt.zsh
-
 # Use modern completion system
 autoload -Uz compinit
 compinit
 
 # Sets a search path for the cd command
-cdpath=( ~/workspace/airbnb/ ~/workspace/ )
+cdpath=( ~/workspace/ )
 
 setopt correctall
 setopt autocd
