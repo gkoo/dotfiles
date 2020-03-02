@@ -8,7 +8,8 @@ plugins=(git)
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="fino"
-ZSH_THEME="muse"
+#ZSH_THEME="muse"
+ZSH_THEME="flazz"
 DEFAULT_USER="gordonkoo"
 
 source $ZSH/oh-my-zsh.sh
@@ -43,7 +44,7 @@ export PATH=~/Library/Android/sdk/platform-tools:$PATH
 cdpath=( ~/workspace/opendoor/ ~/workspace/ ~/ )
 
 # Rbenv
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 
 # vi mode
 # `man zshzle` for more info

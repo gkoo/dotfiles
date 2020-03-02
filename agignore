@@ -10,3 +10,11 @@ valuator3.js
 vendor.js
 wordpress.js
 valuation_report.js
+*.map.json
+*.mock.go
+*.min.js
+*.min.js.map
+*.js.map.json
+package_external.js
+*.csv
+*node_modules*
