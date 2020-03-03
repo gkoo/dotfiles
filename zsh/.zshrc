@@ -112,3 +112,5 @@ export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 source ~/.dotfiles/zsh/secrets
 
 eval "$(direnv hook zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
