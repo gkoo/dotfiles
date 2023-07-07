@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-export ZSH="/Users/gordonkoo/.oh-my-zsh"
+export ZSH="/Users/gkoo/.oh-my-zsh"
 
 plugins=(git)
 
@@ -7,10 +7,11 @@ plugins=(git)
 # Look in $ZDOTDIR/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="fino"
-#ZSH_THEME="muse"
-ZSH_THEME="flazz"
-DEFAULT_USER="gordonkoo"
+ZSH_THEME="fino-time-gkoo"
+# ZSH_THEME="fino-time"
+# ZSH_THEME="muse"
+# ZSH_THEME="flazz"
+DEFAULT_USER="gkoo"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -19,7 +20,7 @@ source $ZSH/oh-my-zsh.sh
 #export PATH=$HOME/bin:/usr/local/Cellar/git/1.9.2/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
-#export PATH=/Users/gordonkoo/miniconda3/bin:$PATH
+#export PATH=/Users/gkoo/miniconda3/bin:$PATH
 
 # # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -41,7 +42,7 @@ export PATH=~/Library/Android/sdk/platform-tools:$PATH
 # ===============
 
 # Sets a search path for the cd command
-cdpath=( ~/workspace/opendoor/ ~/workspace/ ~/ )
+cdpath=( ~/workspace/notion/ ~/workspace/ ~/ )
 
 # Rbenv
 #eval "$(rbenv init -)"
@@ -74,19 +75,14 @@ gitbranch() {
 }
 
 gitrepo() {
-  git remote -v | egrep "^origin.+\(push\)$" | cut -f 2 | cut -d " " -f 1 | cut -d ":" -f 2 | cut -d "." -f 1
+	# For ssh remotes
+  # git remote -v | egrep "^origin.+\(push\)$" | cut -f 2 | cut -d " " -f 1 | cut -d ":" -f 2 | cut -d "." -f 1
+	# For https remotes
+	git remote -v | egrep "^origin.+\(push\)$" | cut -f 2 | cut -d " " -f 1 | cut -d "/" -f 4,5 | cut -d "." -f 1
 }
 
 gitlastsha() {
   g log -n 1 --oneline | cut -d ' ' -f 1
-}
-
-instpods() {
-  cd institutions/; kubectl --namespace=$1 get pods | grep institutions
-}
-
-sshinstpod() {
-  kubectl --namespace=$1 exec -it $2 bash
 }
 
 # opens a link to the git branch in GHE
@@ -94,23 +90,22 @@ branchopen() {
   open "http://www.github.com/$(gitrepo)/compare/$(gitbranch)"
 }
 
-reviewappsh() {
-  heroku run -a $1 rails c
+terraform-resources() {
+   awk '/^module/ { gsub("\"", "", $2 ); gsub("\"", "", $1 ); printf "--target %s.%s ", $1, $2 } ; /^(resource)/ { gsub("\"", "", $3 ); gsub("\"", "", $2 ); printf  "--target %s.%s ", $2,  $3  } ; END { print ""}' "$@"
 }
 
-export ODDIR="$HOME/workspace/opendoor"
-export OD_CURRENT_USER_EMAIL="gordon@opendoor.com"
-export WEB_PATH="/Users/gordonkoo/workspace/opendoor/web/"
-export CONSUMER_PATH="/Users/gordonkoo/workspace/opendoor/consumer/"
-export ANDROID_HOME=/Users/gordonkoo/Library/Android/sdk
-export ANSIBLE_VAULT_PASSWORD_FILE=/Users/gordonkoo/.opendoor/ansible_pwd
-export GOPATH="/Users/gordonkoo/workspace/opendoor/go/"
-export PATH=$GOPATH/bin:$PATH
-export PATH="/Users/gordonkoo/workspace/protoc-3.6.1-osx-x86_64:$PATH"
-export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
+source $HOME/.dotfiles/secrets
 
-source ~/.dotfiles/zsh/secrets
-
-eval "$(direnv hook zsh)"
+#eval "$(direnv hook zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(rbenv init -)"
+eval "$(notion completion --install)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+export NOTION_NEXT="$HOME/workspace/notion/notion-next"
+export NOTION_NO_PREPUSH=true
+export NOTION_DEVELOPER_EMAIL=gordon@makenotion.com
