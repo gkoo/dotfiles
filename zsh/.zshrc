@@ -85,6 +85,10 @@ gitlastsha() {
   g log -n 1 --oneline | cut -d ' ' -f 1
 }
 
+gbb() {
+	git branch | fzf
+}
+
 gfb() {
  git checkout $(git branch | fzf| tr -d '[:space:]*')
 }
