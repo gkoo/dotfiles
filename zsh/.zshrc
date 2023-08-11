@@ -76,13 +76,17 @@ gitbranch() {
 
 gitrepo() {
 	# For ssh remotes
-  # git remote -v | egrep "^origin.+\(push\)$" | cut -f 2 | cut -d " " -f 1 | cut -d ":" -f 2 | cut -d "." -f 1
+  git remote -v | egrep "^origin.+\(push\)$" | cut -f 2 | cut -d " " -f 1 | cut -d ":" -f 2 | cut -d "." -f 1
 	# For https remotes
-	git remote -v | egrep "^origin.+\(push\)$" | cut -f 2 | cut -d " " -f 1 | cut -d "/" -f 4,5 | cut -d "." -f 1
+	# git remote -v | egrep "^origin.+\(push\)$" | cut -f 2 | cut -d " " -f 1 | cut -d "/" -f 4,5 | cut -d "." -f 1
 }
 
 gitlastsha() {
   g log -n 1 --oneline | cut -d ' ' -f 1
+}
+
+gfb() {
+ git checkout $(git branch | fzf| tr -d '[:space:]*')
 }
 
 # opens a link to the git branch in GHE
@@ -109,3 +113,5 @@ export NVM_DIR="$HOME/.nvm"
 export NOTION_NEXT="$HOME/workspace/notion/notion-next"
 export NOTION_NO_PREPUSH=true
 export NOTION_DEVELOPER_EMAIL=gordon@makenotion.com
+export NOTION_USER_NATIVE_NODE=true
+eval "$(pyenv init -)"

@@ -1,9 +1,9 @@
 [core]
-  excludesfile = /Users/gkoo/.gitignore_global
+  excludesfile = /Users/gkoo/.gitignore
   editor = /usr/bin/vim
 [user]
   name = Gordon Koo
-  email = gordon@opendoor.com
+	email = gordon@makenotion.com
 [color]
   branch = auto
   diff = auto
@@ -37,7 +37,6 @@
   ps = push
   pl = pull
   prune-merged = ! "git branch --merged master | grep -v -E '^(\\* |  master$)' | xargs -n 1 git branch -d"
-  fb = "!zsh -c \"git branch | grep $1 | xargs -n 1 git checkout\""
 [diff]
   tool = vimdiff
 [difftool]

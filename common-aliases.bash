@@ -6,7 +6,6 @@ alias gft="git fetch"
 # Commented out next line because it was causing error messages when opening a new shell
 # alias gpfo="git push -f origin $(git rev-parse --abbrev-ref HEAD)"
 #alias gclone="git clone"
-alias gfb="git fb" # `git fb' is aliased to `!zsh -c "git branch | grep $1 | xargs -n 1 git checkout"'
 
 # Terraform
 alias tf="terraform"
