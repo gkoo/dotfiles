@@ -1,6 +1,7 @@
 [core]
   excludesfile = /Users/gkoo/.gitignore
   editor = /usr/bin/vim
+	ignorecase = true
 [user]
   name = Gordon Koo
 	email = gordon@makenotion.com
@@ -39,6 +40,7 @@
   prune-merged = ! "git branch --merged master | grep -v -E '^(\\* |  master$)' | xargs -n 1 git branch -d"
 [diff]
   tool = vimdiff
+	renameLimit = 4992
 [difftool]
   prompt = false
 [push]
