@@ -44,7 +44,7 @@ export PATH=~/Library/Android/sdk/platform-tools:$PATH
 # Sets a search path for the cd command
 cdpath=( ~/workspace/notion/notion-next ~/workspace/ ~/ )
 
-# Rbenv
+# Rbenv (disabled for performance - not using Ruby)
 #eval "$(rbenv init -)"
 
 # vi mode
@@ -105,12 +105,37 @@ source $HOME/.dotfiles/secrets
 #eval "$(direnv hook zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(rbenv init -)"
+# Removed for performance - not using Ruby
+# eval "$(rbenv init -)"
 eval "$(notion completion --install)"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# Lazy load nvm - only load when actually needed
+nvm() {
+    unset -f nvm node npm npx
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+    nvm "$@"
+}
+# Lazy load node, npm, npx
+node() {
+    unset -f nvm node npm npx
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+    node "$@"
+}
+npm() {
+    unset -f nvm node npm npx
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+    npm "$@"
+}
+npx() {
+    unset -f nvm node npm npx
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+    npx "$@"
+}
 
 export NOTION_NEXT="$HOME/workspace/notion/notion-next"
 export NOTION_NO_PREPUSH=true
@@ -120,7 +145,8 @@ export NOTION_INSTALL_NO_ANDROID=true
 export NOTION_NO_POSTCHECKOUT_MESSAGE=true
 export NOTION_SKIP_VSCODE_EXTENSIONS=true
 export GITHUB_OUTPUT="$NOTION_NEXT/tmp/GITHUB_OUTPUT"
-eval "$(pyenv init -)"
+# Removed for performance - not using Python
+# eval "$(pyenv init -)"
 
 source ~/.dotfiles/common-aliases.bash
 
