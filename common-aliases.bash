@@ -41,10 +41,14 @@ alias gotest="go test ./..."
 alias startkfc="cd ~/workspace/koofitnessclub/; foreman start -f Procfile.dev -p 3000"
 alias goserver="go run cmd/server/*.go"
 
+alias gstaki='git stash --keep-index'
+
 # Notion
 alias nn='cd ~/workspace/notion/notion-next'
-alias awslogin='aws sso login --profile infrastructure-admin'
+alias npmi='npm i'
 alias ntn=notion
 alias ntest="notion test"
+alias ntestw="notion test --watch"
 alias jest="$NOTION_NEXT/node_modules/.bin/jest"
 alias ntncircleci="notion circleci codegen-config"
+alias runscript="$NOTION_NEXT/src/cli/notion node src/tools/runScript.ts"

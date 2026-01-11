@@ -42,7 +42,7 @@ export PATH=~/Library/Android/sdk/platform-tools:$PATH
 # ===============
 
 # Sets a search path for the cd command
-cdpath=( ~/workspace/notion/ ~/workspace/ ~/ )
+cdpath=( ~/workspace/notion/notion-next ~/workspace/ ~/ )
 
 # Rbenv
 #eval "$(rbenv init -)"
@@ -63,8 +63,6 @@ chpwd() {
         *xterm*|rxvt|(dt|k|E)term) print -Pn "\e]2;%m:%~\a";;
     esac
 }
-
-source ~/.dotfiles/common-aliases.bash
 
 # K8s
 #source <(kubectl completion zsh)
@@ -117,5 +115,26 @@ export NVM_DIR="$HOME/.nvm"
 export NOTION_NEXT="$HOME/workspace/notion/notion-next"
 export NOTION_NO_PREPUSH=true
 export NOTION_DEVELOPER_EMAIL=gordon@makenotion.com
-export NOTION_USER_NATIVE_NODE=true
+export NOTION_INSTALL_NO_IOS=true
+export NOTION_INSTALL_NO_ANDROID=true
+export NOTION_NO_POSTCHECKOUT_MESSAGE=true
+export NOTION_SKIP_VSCODE_EXTENSIONS=true
+export GITHUB_OUTPUT="$NOTION_NEXT/tmp/GITHUB_OUTPUT"
 eval "$(pyenv init -)"
+
+source ~/.dotfiles/common-aliases.bash
+
+
+# From Ben Hughes
+# https://notion.slack.com/archives/CPZDWQPNY/p1704812367184909?thread_ts=1703192192.346839&cid=CPZDWQPNY
+fpath=(~/.zsh $fpath)
+zstyle ':completion:*:*:git:*' script /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
+# optional, disables completion of remote branches in contexts where they don't really make sense. This doesn't improve perf that much tbh
+GIT_COMPLETION_CHECKOUT_NO_GUESS=1
+export GIT_COMPLETION_CHECKOUT_NO_GUESS
+
+# Disable extended key reporting. This was causing Shift+Space to print [32;2u in Vim's terminal
+set t_TE=
+export PATH="/opt/homebrew/bin:$PATH"
+eval "$(direnv hook zsh)"
+export RIPGREP_CONFIG_PATH="/Users/gkoo/workspace/notion/notion-next/.ripgreprc"
